@@ -43,7 +43,7 @@ Github Actions的工作流配置以代码的形式保存在Git仓库中，可以
 
 ### Example
 
-```yml
+```yaml
 name: SemVer Auto Tag and Release
 
 on:

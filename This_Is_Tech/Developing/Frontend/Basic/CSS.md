@@ -252,7 +252,7 @@ CSS支持的颜色包括预定义的颜色名称，[RGB(RGBA)值](https://www.w3
 > SlateBlue
 > Violet
 > LightGray
->```
+> ```
 
 ### 颜色属性
 

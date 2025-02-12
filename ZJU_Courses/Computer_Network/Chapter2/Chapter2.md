@@ -36,9 +36,6 @@ icon: 2️⃣
 - 短波/微波通信
 - 卫星通信
 
-> [!info] 电磁波谱
-> ![Chapter2, p.15](Chapter2.pdf#page=15&rect=73,60,653,422)
-
 ---
 
 ## From Waveforms to Bits

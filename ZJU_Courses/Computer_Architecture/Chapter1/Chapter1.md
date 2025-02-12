@@ -47,10 +47,6 @@ $$\text{Execution Time}_\text{new}=\text{Execution Time}_\text{Not Enhanced}+\te
 $$\text{Speedup}_\text{Overall}=\dfrac{\text{Execution Time}_\text{old}}{\text{Execution Time}_\text{new}}=\dfrac{1}{(1-\text{Fraction}_\text{Enhanced})+\dfrac{\text{Fraction}_\text{Enhanced}}{\text{Speedup}_\text{Enhanced}}}$$
 
 > [!example]+ Amdahl定律
-> > [!info] 来源
-> > - [课件例题1](Chapter1.pdf#page=62)
-> > - [课件例题2](Chapter1.pdf#page=63)
-> 
 > > [!example] 例题1
 > > Increasing the processing speed of a certain function in the computer system to **20 times** the original, but the processing time of this function only accounts for **40%** of the running time of the entire system. After adopting this method to improve performance, how much can the performance of the entire system improve?
 > > 

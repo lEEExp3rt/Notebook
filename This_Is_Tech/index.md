@@ -9,5 +9,6 @@ icon: TiHome
 
 ## Table Of Contents
 
+- [Developing](Developing/index.md)
 - [Tools](Tools/index.md)
 - [Miscellaneous](Miscellaneous/index.md)
