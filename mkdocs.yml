@@ -1,0 +1,225 @@
+# MkDocs configuration file for !EEExp3rt's Notebook.
+
+# Project information.
+site_name: leeexp3rt's Notebook
+site_url: https://leeexp3rt.github.io/Notebook/
+site_description: >-
+  Welcome to !EEExp3rt's Notebook.
+site_author: leeexp3rt
+
+# Repository information.
+repo_name: leeexp3rt/Notebook
+repo_url: https://github.com/leeexp3rt/Notebook
+
+# Copyright.
+copyright: Copyright &copy; 2024 - 2025 !EEExp3rt
+
+# Theme configuration.
+theme:
+  name: material
+  language: zh
+  font:
+    text: Roboto
+    code: Roboto Mono
+  palette:
+    # Light mode.
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode.
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  logo: assets/icon/handsome.jpg
+  favicon: assets/icon/Neymar.jpg
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    # Navigation.
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+#    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    # TOC.
+    - toc.follow
+    # Header.
+    - header.autohide
+    - announce.dismiss
+    # Search.
+    - search.highlight
+    - search.suggest
+    - search.share
+    # Extra.
+    - content.code.copy
+    - content.tabs.link
+    - announce.dismiss
+
+# Extensions.
+markdown_extensions:
+  - toc: # Table of contents.
+      permalink: true
+  - admonition # Admonition.
+  - pymdownx.details # Foldable admonition.
+  - pymdownx.superfences:
+      custom_fences:
+        # Mermaid.
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+      line_spans: __span
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - def_list # Definition list.
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed: # Tabbed content.
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - tables # Tables.
+  - footnotes # Footnotes.
+  - pymdownx.arithmatex: # Math.
+      generic: true
+  # Format.
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  # Emoji.
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# Plugins.
+plugins:
+  - search
+  - blog:
+      archive_date_format: MMMM yyyy
+#      categories_allowed:
+      pagination_per_page: 10
+      blog_toc: true
+  - tags
+
+# Extra.
+extra:
+  social:
+    # Github.
+    - icon: fontawesome/brands/github
+      link: https://github.com/lEEExp3rt
+    # Email.
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:leeexp3rt@outlook.com
+
+# Extra CSS and JavaScript.
+extra_css:
+  - https://unpkg.com/katex@0/dist/katex.min.css
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+# Navigation.
+nav:
+  - 首页:
+    - "index.md"
+    - 关于我: "about.md"
+    - 许可证: "license.md"
+  - ZJU 学习课程:
+    - "ZJU_Courses/index.md"
+    - 编译原理:
+      - "ZJU_Courses/Compiler/index.md"
+    - 计算机体系结构:
+      - "ZJU_Courses/Computer_Architecture/index.md"
+      - Chapter1: "ZJU_Courses/Computer_Architecture/Chapter1/Chapter1.md"
+      - Chapter2: "ZJU_Courses/Computer_Architecture/Chapter2/Chapter2.md"
+      - Chapter3: "ZJU_Courses/Computer_Architecture/Chapter3/Chapter3.md"
+      - Chapter4: "ZJU_Courses/Computer_Architecture/Chapter4/Chapter4.md"
+      - Chapter5: "ZJU_Courses/Computer_Architecture/Chapter5/Chapter5.md"
+    - 计算机网络:
+      - "ZJU_Courses/Computer_Network/index.md"
+      - "Chapter1: Introduction": "ZJU_Courses/Computer_Network/Chapter1/Chapter1.md"
+      - "Chapter2: The Physical Layer": "ZJU_Courses/Computer_Network/Chapter2/Chapter2.md"
+      - "Chapter3: The Data Link Layer": "ZJU_Courses/Computer_Network/Chapter3/Chapter3.md"
+      - "Chapter4: The Medium Access Control Sublayer": "ZJU_Courses/Computer_Network/Chapter4/Chapter4.md"
+      - "Chapter5: The Network Layer": "ZJU_Courses/Computer_Network/Chapter5/Chapter5.md"
+      - "Chapter6: The Transport Layer": "ZJU_Courses/Computer_Network/Chapter6/Chapter6.md"
+      - "Chapter7: The Application Layer": "ZJU_Courses/Computer_Network/Chapter7/Chapter7.md"
+    - 操作系统:
+      - "ZJU_Courses/Operating_System/index.md"
+      - "Chapter1: Introduction": "ZJU_Courses/Operating_System/Chapter1/Chapter1.md"
+      - "Chapter2: Operating System Structures": "ZJU_Courses/Operating_System/Chapter2/Chapter2.md"
+      - "Chapter3: Processes": "ZJU_Courses/Operating_System/Chapter3/Chapter3.md"
+      - "Chapter4: Threads & Concurrency": "ZJU_Courses/Operating_System/Chapter4/Chapter4.md"
+      - "Chapter5: CPU Scheduling": "ZJU_Courses/Operating_System/Chapter5/Chapter5.md"
+      - "Chapter6: Process Synchronization": "ZJU_Courses/Operating_System/Chapter6/Chapter6.md"
+      - "Chapter7: Deadlocks": "ZJU_Courses/Operating_System/Chapter7/Chapter7.md"
+      - "Chapter8: Main Memory": "ZJU_Courses/Operating_System/Chapter8/Chapter8.md"
+      - "Chapter9: Virtual Memory": "ZJU_Courses/Operating_System/Chapter9/Chapter9.md"
+  - 技术积累:
+    - "This_Is_Tech/index.md"
+    - 开发相关:
+      - "This_Is_Tech/Developing/index.md"
+      - 前端:
+        - "This_Is_Tech/Developing/Frontend/index.md"
+        - 基础三剑客:
+          - HTML: "This_Is_Tech/Developing/Frontend/Basic/HTML.md"
+          - CSS: "This_Is_Tech/Developing/Frontend/Basic/CSS.md"
+          - JavaScript: "This_Is_Tech/Developing/Frontend/Basic/JavaScript.md"
+        - 框架:
+          - Vue.js: "This_Is_Tech/Developing/Frontend/Frameworks/Vue.md"
+      - C/C++:
+        - CMake: "This_Is_Tech/Developing/C/Cmake.md"
+        - GDB: "This_Is_Tech/Developing/C/GDB.md"
+        - Make: "This_Is_Tech/Developing/C/Make.md"
+      - Python:
+        - Conda: "This_Is_Tech/Developing/Python/Conda.md"
+      - Git:
+        - Git: "This_Is_Tech/Developing/Git/Git.md"
+        - Github: "This_Is_Tech/Developing/Git/Github.md"
+      - Docker:
+        - Docker: "This_Is_Tech/Developing/Docker/Docker.md"
+        - Dockerfile: "This_Is_Tech/Developing/Docker/Dockerfile.md"
+      - WSL: "This_Is_Tech/Developing/WSL.md"
+    - 实用工具:
+      - "This_Is_Tech/Tools/index.md"
+      - 笔记工具:
+        - "This_Is_Tech/Tools/Notes/index.md"
+        - Markdown 数学公式: "This_Is_Tech/Tools/Notes/Math.md"
+        - Obsidian: "This_Is_Tech/Tools/Notes/Obsidian.md"
+      - 演示工具:
+        - Marp: "This_Is_Tech/Tools/Presentation/Marp.md"
+        - Reveal.js: "This_Is_Tech/Tools/Presentation/Reveal.md"
+        - Slidev: "This_Is_Tech/Tools/Presentation/Slidev.md"
+      - 站点工具:
+        - "This_Is_Tech/Tools/Sites/index.md"
+        - MkDocs: "This_Is_Tech/Tools/Sites/MkDocs.md"
+        - AcademicPages: "This_Is_Tech/Tools/Sites/AcademicPages.md"
+      - Vim:
+        - Vim: "This_Is_Tech/Tools/Vim/Vim.md"
+        - Vim 插件: "This_Is_Tech/Tools/Vim/VimPluginsConfig.md"
+      - 正则表达式: "This_Is_Tech/Tools/Regex.md"
+    - 其它杂项:
+      - "This_Is_Tech/Miscellaneous/index.md"
+      - 如何写变更日志: "This_Is_Tech/Miscellaneous/Changelog.md"
+      - 如何写提交信息: "This_Is_Tech/Miscellaneous/Commit_Message.md"
+      - 如何选择许可证: "This_Is_Tech/Miscellaneous/Licenses.md"
+      - 语义化版本: "This_Is_Tech/Miscellaneous/Semantic_Versioning.md"
+  - 其它杂项:
+    - 旅游攻略:
+      - "福建-福州-平潭": "Miscellaneous/Travel_Plans/202408/20240831.md"
+  - 博客日志:
+    - "blog/index.md"
