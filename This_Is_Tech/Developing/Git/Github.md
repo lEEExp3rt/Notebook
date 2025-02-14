@@ -28,7 +28,7 @@ Github Actions的工作流配置以代码的形式保存在Git仓库中，可以
 
 工作流是一个可配置的自动化流程，它将运行一个或多个Job
 
-流程配置文件使用YAML格式，保存在仓库的`.github/workworks/`中
+流程配置文件使用YAML格式，保存在仓库的`.github/workflows/`中
 
 一个工作流中可以有若干Job，每个Job可以有多个Step
 
