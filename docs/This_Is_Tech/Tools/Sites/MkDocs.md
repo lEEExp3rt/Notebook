@@ -616,10 +616,10 @@ markdown_extensions:
 ## 5 Themes
 
 !!! info "默认配置"
- *MkDocs*默认主题：`mkdocs`和`readthedoc`
+    *MkDocs*默认主题：`mkdocs`和`readthedoc`
 
 !!! info "第三方主题库"
-[MkDocs Themes · mkdocs/mkdocs Wiki](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes)
+    [MkDocs Themes · mkdocs/mkdocs Wiki](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes)
 
 ### 5.1 MkDocs-Material
 
