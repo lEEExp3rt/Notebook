@@ -66,6 +66,11 @@ theme:
 markdown_extensions:
   - toc: # Table of contents.
       permalink: true
+      separator: "%20" # Compatible with Obsidian.
+      slugify: !!python/object/apply:pymdownx.slugs.slugify # Slugify unicode.
+        kwds:
+          case: none
+          percent_encode: false
   - admonition # Admonition.
   - pymdownx.details # Foldable admonition.
   - pymdownx.superfences:
