@@ -5,7 +5,8 @@ tags:
 
 # ZJU Courses
 
-收录一些ZJU的课程笔记
+!!! abstract "本节摘要"
+    收录一些 ZJU 的课程笔记
 
 ## Table Of Contents
 

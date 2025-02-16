@@ -201,11 +201,11 @@ nav:
       - WSL: "This_Is_Tech/Developing/WSL.md"
     - 实用工具:
       - "This_Is_Tech/Tools/index.md"
-      - 笔记工具:
-        - "This_Is_Tech/Tools/Notes/index.md"
-        - Markdown 数学公式: "This_Is_Tech/Tools/Notes/Math.md"
-        - Obsidian: "This_Is_Tech/Tools/Notes/Obsidian.md"
+      - Markdown:
+        - "This_Is_Tech/Tools/Markdown/index.md"
+        - Markdown 数学公式: "This_Is_Tech/Tools/Markdown/Math.md"
       - 演示工具:
+        - "This_Is_Tech/Tools/Presentation/index.md"
         - Marp: "This_Is_Tech/Tools/Presentation/Marp.md"
         - Reveal.js: "This_Is_Tech/Tools/Presentation/Reveal.md"
         - Slidev: "This_Is_Tech/Tools/Presentation/Slidev.md"
@@ -217,6 +217,7 @@ nav:
         - Vim: "This_Is_Tech/Tools/Vim/Vim.md"
         - Vim 插件: "This_Is_Tech/Tools/Vim/VimPluginsConfig.md"
       - 正则表达式: "This_Is_Tech/Tools/Regex.md"
+      - Obsidian: "This_Is_Tech/Tools/Obsidian.md"
     - 其它杂项:
       - "This_Is_Tech/Miscellaneous/index.md"
       - 如何写变更日志: "This_Is_Tech/Miscellaneous/Changelog.md"
@@ -224,7 +225,9 @@ nav:
       - 如何选择许可证: "This_Is_Tech/Miscellaneous/Licenses.md"
       - 语义化版本: "This_Is_Tech/Miscellaneous/Semantic_Versioning.md"
   - 其它杂项:
+    - "Miscellaneous/index.md"
     - 旅游攻略:
+      - "Miscellaneous/Travel_Plans/index.md"
       - "福建-福州-平潭": "Miscellaneous/Travel_Plans/202408/20240831.md"
   - 博客日志:
     - "blog/index.md"
