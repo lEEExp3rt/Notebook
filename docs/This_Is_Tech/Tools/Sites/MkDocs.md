@@ -5,9 +5,9 @@ tags:
 
 # MkDocs
 
-## 1 Introduction
+## Introduction
 
-### 1.1 MkDocs
+### MkDocs
 
 > [MkDocs](https://www.mkdocs.org/) is a fast, simple and downright gorgeous static site generator that’s geared towards building project documentation. Documentation source files are written in Markdown, and configured with a single YAML configuration file.
 
@@ -15,7 +15,7 @@ tags:
 
 *MkDocs*采用Python编写，使用[Python-Markdown](https://python-markdown.github.io/kk)解析Markdown文件，使用[Pygments](https://pygments.org/)语法高亮代码，使用[Jinja](https://jinja.palletsprojects.com/)模板引擎渲染Markdown文件
 
-### 1.2 MkDocs-Material
+### MkDocs-Material
 
 > [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) is a powerful documentation framework on top of MkDocs, a static site generator for project documentation.
 
@@ -31,7 +31,7 @@ MkDocs-Material是一个基于MkDocs的主题框架，它提供了一个简洁�
 
 ---
 
-## 2 Installation
+## Installation
 
 MkDocs由Python编写，因此使用Python包作为安装单元
 
@@ -65,9 +65,9 @@ sudo apt install mkdocs
 
 ---
 
-## 3 Usage
+## Usage
 
-### 3.1 创建站点
+### 创建站点
 
 ```shell title="创建站点"
 mkdocs new <dir_name>
@@ -82,7 +82,7 @@ mkdocs new <dir_name>
 └── mkdocs.yml # 配置文件
 ```
 
-### 3.2 本地渲染
+### 本地渲染
 
 ```shell
 mkdocs serve
@@ -92,7 +92,7 @@ mkdocs serve
 
 在运行站点的同时，也可以修改站点信息，都可以实时在浏览器显示更改
 
-### 3.3 构建站点
+### 构建站点
 
 经过构建之后就可以看到渲染
 
@@ -103,22 +103,20 @@ mkdocs build
 构建完成后会出现一个新的目录`site/`
 
 !!! tip "使用建议"
-    对于[远程部署](MkDocs.md#3.4%20远程部署)来说，最好只上传原始的Markdown文档到服务器，然后在服务器端进行构建生成站点，因为MkDocs的版本变化可能导致本地构建的站点上传至服务器时无法正常显示
+    对于[远程部署](MkDocs.md#远程部署)来说，最好只上传原始的Markdown文档到服务器，然后在服务器端进行构建生成站点，因为MkDocs的版本变化可能导致本地构建的站点上传至服务器时无法正常显示
     ```gitignore
     site/
     ```
 
-### 3.4 远程部署
+### 远程部署
 
 为了能在远程看到站点渲染，需要进行远程部署
 
-#### 3.4.1 GitHub
+#### GitHub
 
-通常来说，使用[GitHub页面](https://pages.github.com/)构建是最为常见的
+通常来说，使用[GitHub Pages](https://pages.github.com/)构建是最为常见的
 
-GitHub的构建分为[项目站点](#项目网站)和[用户站点](#用户网站)
-
-##### 3.4.1.1 项目站点
+##### 项目站点
 
 ```shell
 mkdocs gh-deploy
@@ -133,7 +131,7 @@ mkdocs gh-deploy
 !!! tip "使用建议"
     可以在主分支上上传项目源文档，利用`gh-pages`分支上传构建后的站点文档
 
-##### 3.4.1.2 用户站点
+##### 用户站点
 
 ```shell
 # 假设项目结构如下
@@ -159,14 +157,14 @@ mkdocs gh-deploy --config-file ../Project/mkdocs.yml --remote-branch master
 
 ---
 
-## 4 Configuration
+## Configuration
 
 进入`mkdocs.yml`进行站点配置
 
 !!! warning "注意"
     以下配置仅对主题MkDocs-Material有效，不同主题支持的配置不同，详见官方文档
 
-### 4.1 站点信息
+### 站点信息
 
 站点名是唯一的硬性配置要求
 
@@ -188,7 +186,7 @@ repo_url: Your_Repo_URL
 copyright: Copyright Info
 ```
 
-### 4.2 导航栏
+### 导航栏
 
 使用导航栏（*Navigator*）显示所有添加的页面
 
@@ -211,17 +209,10 @@ nav:
   - Blog:
 	  - blog.index.md
 ```
-
-!!! info "完整配置"
-    [Material主题下的导航栏完整配置](MkDocs.md#5.1.6%20导航栏)
-
-!!! note "注意"
-    如果不添加导航栏标题的名字，*MkDocs*会自动识别所有的`.md`文档并形成一个自动的导航栏，并按照字母序对所有文档排序
-
 !!! warning "注意"
     添加的`.md`文档不应该以`.`开头，否则会被*MkDocs*忽略导致添加失败，如`.foo.md`
 
-### 4.3 首页
+### 首页
 
 通常根据习惯，浏览器都会把首页返回为一个index文件，所以*MkDocs*也采用`index.md`作为首页
 
@@ -230,9 +221,9 @@ nav:
 !!! warning "注意"
     如果`index.md`和`README.md`同时存在，则`README.md`会被忽略
 
-### 4.4 TOC
+### TOC
 
-#### 4.4.1 标题链接
+#### 标题链接
 
 让每个标题带上链接
 
@@ -246,7 +237,7 @@ markdown_extensions:
       permalink: true
 ```
 
-#### 4.4.2 基准标题
+#### 基准标题
 
 默认情况下基准标题为`1`
 
@@ -259,7 +250,7 @@ markdown_extensions:
       toc_depth: 3
 ```
 
-#### 4.4.3 分词符
+#### 分词符
 
 分词符为使用了标题链接后显示的ID中的分隔符
 
@@ -271,7 +262,7 @@ markdown_extensions:
       seperator: '_'
 ```
 
-### 4.5 提示块
+### 提示块
 
 提示块扩展(*Admonition*, *Call-out*)非常好用
 
@@ -282,7 +273,7 @@ markdown_extensions:
 	- pymdownx.superfences # 提示块可嵌套
 ```
 
-#### 4.5.1 用法
+#### 用法
 
 ```Markdown
 <!-- 基本用法 -->
@@ -314,7 +305,7 @@ markdown_extensions:
 	Your Text Here
 ```
 
-#### 4.5.2 支持类型
+#### 支持类型
 
 !!! note
 
@@ -340,9 +331,9 @@ markdown_extensions:
 
 !!! quote
 
-### 4.6 代码块
+### 代码块
 
-#### 4.6.1 配置
+#### 配置
 
 ```yaml title="mkdocs.yml"
 markdown_extensions:
@@ -361,7 +352,7 @@ theme:
 		- content.code.copy # 代码块复制按键
 ```
 
-#### 4.6.2 用法
+#### 用法
 
 ``````Markdown
 <!-- Code Block -->
@@ -379,7 +370,7 @@ Your code here
 | 起始行号  |                     `linenums="Num"`                     |
 | 高亮特定行 | `hl_lines="line1 line2 ..."`<br>`hl_lines="line1-lineN"` |
 
-### 4.7 列表
+### 列表
 
 !!! note "注意"
     多级列表需要4个空格才能识别
@@ -428,9 +419,9 @@ markdown_extensions:
         * [ ] Praesent sed risus massa
     - [ ] Aenean pretium efficitur erat, donec pharetra, ligula non scelerisque
 
-### 4.8 Tabs
+### Tabs
 
-#### 4.8.1 配置
+#### 配置
 
 ```yaml title="mkdocs.yml"
 markdown_extension:
@@ -443,7 +434,7 @@ markdown_extension:
 				case: lower
 ```
 
-#### 4.8.2 用法
+#### 用法
 
 ``````Markdown
 === "YourTitleHere"
@@ -473,14 +464,14 @@ markdown_extension:
     ```
 ``````
 
-### 4.9 表格
+### 表格
 
 ```yaml title="mkdocs.yml"
 markdown_extension:
 	- tables
 ```
 
-### 4.10 Mermaid
+### Mermaid
 
 ```yaml title="mkdocs.yml"
 markdown_extensions:
@@ -494,14 +485,14 @@ markdown_extensions:
 !!! info "支持的类型"
     [Diagrams - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/diagrams/)
 
-### 4.11 脚注
+### 脚注
 
 ```yaml title="mkdocs.yml"
 markdown_extensions:
 	- footnotes
 ```
 
-### 4.12 数学公式
+### 数学公式
 
 !!! info "完整信息"
     [Math - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/math/)
@@ -539,7 +530,7 @@ extra_css:
 	- https://unpkg.com/katex@0/dist/katex.min.css
 ```
 
-### 4.13 格式化
+### 格式化
 
 [格式化](https://squidfunk.github.io/mkdocs-material/reference/formatting/#usage)支持文本的高亮、删除线、替换、上下标等
 
@@ -578,7 +569,7 @@ possible {>>and comments can be added inline<<}.
     ++ctrl+alt+del++
     ```
 
-### 4.14 Emoji
+### Emoji
 
 ```yaml title="mkdocs.yml"
 markdown_extensions:
@@ -588,14 +579,14 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 ```
 
-### 4.15 小提示
+### 小提示
 
  可以给文本添加小提示，如缩略语等
 
 !!! info "完整信息"
     [Tooltips - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/tooltips/)
 
-### 4.16 站内跳转
+### 站内跳转
 
 使用Markdown的链接格式进行站内跳转
 
@@ -604,7 +595,7 @@ markdown_extensions:
 [AltText](RelativePath/To/ThisFile#Section)
 ```
 
-### 4.17 图片与媒体
+### 图片与媒体
 
 把所有图片放到`docs/img/`下，并在你的文档中使用相对于`docs/`的路径使用图片链接格式即可
 
@@ -613,7 +604,7 @@ markdown_extensions:
 
 ---
 
-## 5 Themes
+## Themes
 
 !!! info "默认配置"
     *MkDocs*默认主题：`mkdocs`和`readthedoc`
@@ -621,11 +612,11 @@ markdown_extensions:
 !!! info "第三方主题库"
     [MkDocs Themes · mkdocs/mkdocs Wiki](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes)
 
-### 5.1 MkDocs-Material
+### MkDocs-Material
 
-#### 5.1.1 配色
+#### 配色
 
-##### 5.1.1.1 主题配色
+##### 主题配色
 
 MkDocs-Material支持2种颜色主题
 
@@ -641,7 +632,7 @@ theme:
 		scheme: default
 ```
 
-##### 5.1.1.2 内容配色
+##### 内容配色
 
 * 基础配色(*Primary Color*)用于在文档头、侧边栏、文本链接等显示
 * 口音配色(*Accent Color*)用于在链接、按钮、滚动条等显示
@@ -679,7 +670,7 @@ theme:
     white -> 仅限primary
     ```
 
-##### 5.1.1.3 配色切换
+##### 配色切换
 
 可以让用户决定主题配色切换
 
@@ -714,7 +705,7 @@ theme:
     material/lightbulb     + material/lightbulb-outline
     ```
 
-###### 5.1.1.3.1 跟随系统
+###### 跟随系统
 
 与系统配色保持一致的配色风格
 
@@ -742,7 +733,7 @@ theme:
 	        name: Switch to light mode
 ```
 
-###### 5.1.1.3.2 自动切换
+###### 自动切换
 
 一些新的操作系统允许在白天和夜晚自动切换配色
 
@@ -769,12 +760,12 @@ theme:
 	        name: Switch to system preference
 ```
 
-##### 5.1.1.4 自定义配色
+##### 自定义配色
 
 !!! info "完整内容"
     [自定义配色](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#customization)
 
-#### 5.1.2 字体
+#### 字体
 
 !!! tip "通常来说字体不用调"
 
@@ -789,7 +780,7 @@ theme:
 !!! info "完整信息"
     [字体](https://squidfunk.github.io/mkdocs-material/setup/changing-the-fonts/#changing-the-fonts)
 
-#### 5.1.3 语言
+#### 语言
 
 在配置文件中进行修改
 
@@ -810,9 +801,9 @@ theme:
 !!! info "完整信息"
     [支持的语言和语言切换器](https://squidfunk.github.io/mkdocs-material/setup/changing-the-language/#changing-the-language)
 
-#### 5.1.4 图标
+#### 图标
 
-##### 5.1.4.1 logo
+##### logo
 
 logo显示在侧边栏上
 
@@ -822,7 +813,7 @@ theme:
 	logo: PathToYourLogoFile
 ```
 
-##### 5.1.4.2 站点图标
+##### 站点图标
 
 站点图标显示在浏览器标签页上
 
@@ -835,13 +826,13 @@ theme:
 ??? info "MkDocs原生图标支持"
     *MkDocs*原生主题默认使用[MkDocs favicon](https://www.mkdocs.org/img/favicon.ico)图标，如果使用自定义图标，在`docs/`下创建子目录`img`，并将图标文件`.ico`放入其中即可，无需修改任何配置
 
-##### 5.1.4.3 其它图标
+##### 其它图标
 
 ```yaml title="mkdocs.yml"
 theme:
 	name: material
 	icon:
-		logo: ... # 同[logo](MkDocs.md#5.1.4.1%20logo)
+		logo: ... # 同[logo](MkDocs.md#logo)
 		menu: ...
 		alternate: ...
 		search: ...
@@ -881,14 +872,14 @@ theme:
 ??? info "自定义图标"
     [自定义](https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#customization)
 
-#### 5.1.5 数据隐私
+#### 数据隐私
 
 !!! info "完整信息"
     [数据隐私](https://squidfunk.github.io/mkdocs-material/setup/ensuring-data-privacy/#ensuring-data-privacy)
 
-#### 5.1.6 导航栏
+#### 导航栏
 
-##### 5.1.6.1 加载项
+##### 加载项
 
 ```yaml title="mkdocs.yml"
 theme:
@@ -905,7 +896,7 @@ theme:
 !!! bug "说明"
     参考[[工欲善其事，必先利其器] - 搭建技术博客/个人主页 - 使用MkDocs和Material - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/672743170)，即时加载最好去掉，因为在多语言切换中这个加载项会导致切回首页
 
-##### 5.1.6.2 锚点
+##### 锚点
 
 实现导航栏跟踪
 
@@ -916,7 +907,7 @@ theme:
 		- navigation.tracking
 ```
 
-##### 5.1.6.3 菜单栏
+##### 菜单栏
 
 实现页面顶部菜单栏功能
 
@@ -928,7 +919,7 @@ theme:
 		- navigation.tabs.sticky # 是否始终显示
 ```
 
-##### 5.1.6.4 章节显示
+##### 章节显示
 
 显示每个页面的每个章节
 
@@ -940,7 +931,7 @@ theme:
 		- navigation.expand # 是否压缩显示
 ```
 
-##### 5.1.6.5 路径
+##### 路径
 
 !!! info "内测版专属"
 
@@ -951,7 +942,7 @@ theme:
 		- navigation.path
 ```
 
-##### 5.1.6.6 项目优化
+##### 项目优化
 
 构建只可见的页面，可以优化导航栏
 
@@ -962,7 +953,7 @@ theme:
 		- navigation.prune
 ```
 
-##### 5.1.6.7 首页信息
+##### 首页信息
 
 是否单独显示首页
 
@@ -981,7 +972,7 @@ theme:
 		- navigation.indexes
 ```
 
-##### 5.1.6.8 TOC
+##### TOC
 
 TOC在这里指页面右侧的小目录
 
@@ -993,7 +984,7 @@ theme:
 		- toc.integrate # 目录跟踪集成到左侧边栏目录中
 ```
 
-##### 5.1.6.9 回到顶部
+##### 回到顶部
 
 ```yaml title="mkdocs.yml"
 theme:
@@ -1002,7 +993,7 @@ theme:
 		- navigation.top
 ```
 
-##### 5.1.6.10 隐藏
+##### 隐藏
 
 可以在某些页面中隐藏导航栏和/或TOC，只需要在页面的元数据YAML中添加即可
 
@@ -1018,7 +1009,7 @@ hide:
 ...
 ```
 
-#### 5.1.7 顶栏
+#### 顶栏
 
 顶栏可以添加公告、防止仓库地址、搜索栏等等
 
@@ -1030,7 +1021,7 @@ theme:
 		- announce.dismiss # 可以叉掉公告
 ```
 
-#### 5.1.8 底栏
+#### 底栏
 
 底栏可以放置网站链接、社交频道、版权信息等等
 
@@ -1087,12 +1078,12 @@ hide:
 ...
 ```
 
-#### 5.1.9 评论区
+#### 评论区
 
 !!! info "完整信息"
     [评论系统](https://squidfunk.github.io/mkdocs-material/setup/adding-a-comment-system/)
 
-#### 5.1.10 页面源码
+#### 页面源码
 
 ```yaml title="mkdocs.yml"
 theme:
@@ -1104,14 +1095,14 @@ theme:
 
 ---
 
-## 6 Plugins
+## Plugins
 
 这里介绍一些实用的插件，**仅限MkDocs-Material主题**
 
 !!! info "所有插件"
     ([Built-in plugins - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/plugins/))
 
-### 6.1 Search
+### Search
 
 用于全站搜索信息使用
 
@@ -1141,7 +1132,7 @@ theme:
     ...
     ```
 
-### 6.2 Blog
+### Blog
 
 > Blogs are a great way to engage with your audience. Software developers can use a blog to announce new features, demonstrate their usage and provide background information.
 
@@ -1149,7 +1140,7 @@ Blog主要以时间线为线索，类似于日记
 
 完成配置后Blogs根据创建时间顺序倒序排列显示
 
-#### 6.2.1 配置
+#### 配置
 
 在配置文件中应用`blog`插件
 
@@ -1158,7 +1149,7 @@ plugins:
 	- blog
 ```
 
-#### 6.2.2 使用
+#### 使用
 
 完成配置后，运行`mkdocs serve`以创建Blog
 
@@ -1176,7 +1167,7 @@ plugins:
 
 Blog首页会包含所有的Blog及其摘要
 
-#### 6.2.3 元数据
+#### 元数据
 
 创建的Blog必须有一个页头，将Blog的元数据（如创建日期）写在Markdown文件头部的Yaml中
 
@@ -1213,7 +1204,7 @@ links: <!-- 链接 -->
 * Blog可以进行分类，使用`categories`属性标记类别
 * 在Yaml部分到`<!-- more -->`之间的内容会作为Blog的摘要显示在首页和归档中，而后续内容则不会显示
 
-#### 6.2.4 导航栏配置
+#### 导航栏配置
 
 完成Blog配置后搭配导航栏以显示blogs
 
@@ -1233,7 +1224,7 @@ nav:
     		- navigation.indexes
     ```
 
-#### 6.2.5 归档
+#### 归档
 
 Blogs默认情况下按照年份进行归档整理
 
@@ -1245,9 +1236,9 @@ plugins:
 		archive_date_format: MMMM yyyy # y年M月d日
 ```
 
-#### 6.2.6 分类
+#### 分类
 
-在[元数据](MkDocs.md#6.2.3%20元数据)中提到使用分类(*Categories*)的方法对Blogs进行分类
+在[元数据](MkDocs.md#元数据)中提到使用分类(*Categories*)的方法对Blogs进行分类
 
 可以在配置文件中修改允许显示的类别
 
@@ -1260,7 +1251,7 @@ plugins:
 			...
 ```
 
-#### 6.2.7 作者
+#### 作者
 
 创建文件`docs/blog/.authors.yml`来标明Blogs的作者
 
@@ -1293,7 +1284,7 @@ authors:
 ??? info "添加作者个人主页"
     MkDocs-Material内测版允许你在你的站点[添加作者个人主页](https://squidfunk.github.io/mkdocs-material/tutorials/blogs/navigation/#defining-authors)，完成赞助以启用这个功能
 
-#### 6.2.8 分页
+#### 分页
 
 Blogs数量过多时可以使用分页(*Pagination*)功能
 
@@ -1308,7 +1299,7 @@ plugins:
 		categories_pagination_per_page: 5
 ```
 
-#### 6.2.9 目录
+#### 目录
 
 当Blogs数量过多，可以启用Blogs目录完成信息分拣
 
@@ -1318,7 +1309,7 @@ plugins:
 		blog_toc: true
 ```
 
-### 6.3 标签
+### 标签
 
 标签也可以用来对文章分类
 
@@ -1327,7 +1318,7 @@ plugins:
 	- tags
 ```
 
-#### 6.3.1 添加标签
+#### 添加标签
 
 在每页的头部YAML中加入tag
 
@@ -1342,7 +1333,7 @@ tags:
 ...
 ```
 
-#### 6.3.2 隐藏标签
+#### 隐藏标签
 
 只需要在头部YAML中设置
 
@@ -1355,7 +1346,7 @@ hide:
 ...
 ```
 
-#### 6.3.3 标签图标
+#### 标签图标
 
 在配置文件中设置标签的标识符和图标
 
@@ -1377,7 +1368,7 @@ extra:
 !!! info "Material主题提供的标签"
     [Tag-Icon](https://squidfunk.github.io/mkdocs-material/setup/setting-up-tags/#__code_2_annotation_1)
 
-#### 6.3.4 标签索引页
+#### 标签索引页
 
 可以专门做一个标签索引页来记录所有的标签及其对应的页面
 
@@ -1409,7 +1400,7 @@ plugins:
 !!! note "注意"
     添加的文件路径为相对于`docs/`
 
-### 6.4 社交卡片
+### 社交卡片
 
 !!! info "完整信息"
     [社交卡片](https://squidfunk.github.io/mkdocs-material/setup/setting-up-social-cards/#setting-up-social-cards)
@@ -1417,28 +1408,28 @@ plugins:
 !!! bug "说明"
     参考[[工欲善其事，必先利其器] - 搭建技术博客/个人主页 - 使用MkDocs和Material - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/672743170)，社交卡片有一些bug，会导致报错
 
-### 6.5 RSS
+### RSS
 
 !!! info "完整信息"
     [RSS](https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#rss)
 
 ---
 
-## 7 Extra
+## Extra
 
-### 7.1 站点分析工具
+### 站点分析工具
 
 !!! info "完整信息"
     [Analytics](https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-analytics/#setting-up-site-analytics)
 
-### 7.2 版本工具
+### 版本工具
 
 有时候一个产品或站点有不同的版本，因此使用版本工具可以查看不同版本对应的站点内容
 
 !!! info "完整信息"
     [Versioning](https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/)
 
-### 7.3 状态
+### 状态
 
 可以设置文章的状态
 
@@ -1466,7 +1457,7 @@ status: <identifier>
 
 ---
 
-## 8 References
+## References
 
 ??? tip "参考配置"
     参考[知乎](https://zhuanlan.zhihu.com/p/672743170)文章中的一份比较完整和实用的配置文件：
