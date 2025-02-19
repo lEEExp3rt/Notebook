@@ -118,6 +118,8 @@ plugins:
       pagination_per_page: 10
       blog_toc: true
   - tags
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 # Extra.
 extra:
