@@ -1,6 +1,6 @@
 ---
 tags:
-  - VIM
+  - Vim
 icon: LiBook
 ---
 

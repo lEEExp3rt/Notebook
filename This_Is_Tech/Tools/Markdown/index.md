@@ -1,6 +1,4 @@
 ---
-tags:
-  - notes
 icon: TiHome
 ---
 

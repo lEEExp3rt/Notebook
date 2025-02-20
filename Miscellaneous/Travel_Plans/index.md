@@ -1,5 +1,6 @@
 ---
 tags:
+    - Life
 ---
 
 # Travel Plans

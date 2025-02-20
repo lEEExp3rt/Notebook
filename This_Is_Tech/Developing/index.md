@@ -1,8 +1,3 @@
----
-tags:
-  - tools
----
-
 # Developing Tools
 
 > [!abstract] 本节摘要

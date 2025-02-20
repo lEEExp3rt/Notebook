@@ -1,6 +1,4 @@
 ---
-tags:
-  - ABOUT
 icon: SiAboutdotme
 ---
 

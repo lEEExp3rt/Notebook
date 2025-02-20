@@ -1,7 +1,6 @@
 ---
 tags:
   - ZJU-Courses
-  - OS
 icon: 2️⃣
 ---
 

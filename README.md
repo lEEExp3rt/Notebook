@@ -1,7 +1,4 @@
 ---
-tags:
-  - README
-  - 首页
 icon: SiReadme
 ---
 

@@ -1,6 +1,6 @@
 ---
 tags:
-  - regex
+  - Regex
 icon: TiRegex
 ---
 

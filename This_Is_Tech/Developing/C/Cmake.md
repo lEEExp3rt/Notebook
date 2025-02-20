@@ -1,6 +1,6 @@
 ---
 icon: SiCmake
 tags:
-  - C
+  - c
   - cpp
 ---

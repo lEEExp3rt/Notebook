@@ -1,3 +1,5 @@
 ---
+tags:
+    - frontend
 icon: FabVuejs
 ---

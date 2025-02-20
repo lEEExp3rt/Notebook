@@ -1,7 +1,3 @@
----
-tags:
----
-
 # Miscellaneous
 
 > [!abstract] 本节摘要

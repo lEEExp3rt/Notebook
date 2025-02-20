@@ -1,6 +1,6 @@
 ---
 tags:
-  - site
+  - Sites
 icon: SiMdnwebdocs
 ---
 
@@ -1388,7 +1388,7 @@ extra:
 ...
 ```
 
-标签插件会在`!-- material/tags -->`位置插入标签索引页的内容
+标签插件会在`{Markdown}<!-- material/tags -->`位置插入标签索引页的内容
 
 然后在配置文件中修改配置为
 

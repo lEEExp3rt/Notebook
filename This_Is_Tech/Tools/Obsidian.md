@@ -1,9 +1,6 @@
 ---
 tags:
   - Markdown
-  - notes
-aliases:
-  - 第一篇Obsidian文档
 icon: SiObsidian
 ---
 

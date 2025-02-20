@@ -1,7 +1,6 @@
 ---
 tags:
   - ZJU-Courses
-  - Network
 icon: 1️⃣
 ---
 
