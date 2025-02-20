@@ -1,7 +1,6 @@
 ---
 tags:
 - ZJU-Courses
-- Network
 ---
 
 # Chapter 5: The Network Layer

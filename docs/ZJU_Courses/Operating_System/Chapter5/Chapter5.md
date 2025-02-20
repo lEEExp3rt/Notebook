@@ -1,7 +1,6 @@
 ---
 tags:
 - ZJU-Courses
-- OS
 ---
 
 # Chapter 5: CPU Scheduling

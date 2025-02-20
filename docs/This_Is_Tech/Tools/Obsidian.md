@@ -1,7 +1,6 @@
 ---
 tags:
 - Markdown
-- notes
 ---
 
 # Obsidian 使用手册

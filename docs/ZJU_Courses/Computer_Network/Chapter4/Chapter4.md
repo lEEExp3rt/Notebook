@@ -1,7 +1,6 @@
 ---
 tags:
 - ZJU-Courses
-- Network
 ---
 
 # Chapter 4: The Medium Access Control Sublayer

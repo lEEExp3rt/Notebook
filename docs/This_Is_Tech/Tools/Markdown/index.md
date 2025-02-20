@@ -1,7 +1,3 @@
----
-tags:
-- notes
----
 
 # Markdown
 

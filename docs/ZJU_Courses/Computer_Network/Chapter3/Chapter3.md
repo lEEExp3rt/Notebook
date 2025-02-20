@@ -1,7 +1,6 @@
 ---
 tags:
 - ZJU-Courses
-- Network
 ---
 
 # Chapter 3: The Data Link Layer

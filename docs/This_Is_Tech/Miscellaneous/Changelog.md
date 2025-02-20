@@ -1,6 +1,6 @@
 ---
 tags:
-- dev
+- Technical-Specifications
 ---
 
 # Changelog

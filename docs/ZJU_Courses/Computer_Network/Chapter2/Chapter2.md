@@ -1,7 +1,6 @@
 ---
 tags:
 - ZJU-Courses
-- Network
 ---
 
 # Chapter 2: The Physical Layer

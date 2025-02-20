@@ -1,6 +1,6 @@
 ---
 tags:
-- wsl
+- tools
 ---
 
 # WSL

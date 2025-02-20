@@ -1,6 +1,6 @@
 ---
 tags:
-- dev
+- Technical-Specifications
 ---
 
 # 语义化版本

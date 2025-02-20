@@ -1,5 +1,6 @@
 ---
-tags: null
+tags:
+- Life
 ---
 
 # Travel Plans

@@ -1,6 +1,6 @@
 ---
 tags:
-- site
+- Sites
 ---
 
 # Sites

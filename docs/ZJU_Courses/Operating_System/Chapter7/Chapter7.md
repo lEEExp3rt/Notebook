@@ -1,7 +1,6 @@
 ---
 tags:
 - ZJU-Courses
-- OS
 ---
 
 # Chapter 7: Deadlocks

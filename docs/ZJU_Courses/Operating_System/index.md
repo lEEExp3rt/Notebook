@@ -1,7 +1,6 @@
 ---
 tags:
 - ZJU-Courses
-- OS
 ---
 
 # Operating System

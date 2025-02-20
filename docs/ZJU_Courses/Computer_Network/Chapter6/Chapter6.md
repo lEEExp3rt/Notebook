@@ -1,7 +1,6 @@
 ---
 tags:
 - ZJU-Courses
-- Network
 ---
 
 # Chapter 6: The Transport Layer

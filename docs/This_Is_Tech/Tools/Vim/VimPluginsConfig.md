@@ -1,6 +1,6 @@
 ---
 tags:
-- VIM
+- Vim
 ---
 
 # Vim Plugins Configuration
