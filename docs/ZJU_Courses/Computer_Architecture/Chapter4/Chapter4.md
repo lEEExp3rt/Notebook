@@ -100,7 +100,7 @@ Tomasulo算法就是在计分板算法的基础上增加
 
 !!! example "保留站"
     ![Reservation Stations](assets/ReservationStation-1.png)
-    指令进入保留站时，如果能直接读出数值就直接读，不使用寄存器，此时`{armasm}MUL F0, F2, F4`的保留站名称就是`MULT1`，同时更新寄存器状态表，在目标寄存器`Qi`中填入保留站名称
+    指令进入保留站时，如果能直接读出数值就直接读，不使用寄存器，此时`#!armasm MUL F0, F2, F4`的保留站名称就是`MULT1`，同时更新寄存器状态表，在目标寄存器`Qi`中填入保留站名称
     ![Reservation Stations](assets/ReservationStation-2.png)
     这里`ADD1`不能直接计算，因为要用到`MULT1`的结果，还未就绪，此时如果还有`ADD2`或`ADD3`进入就可以先于`ADD1`执行
     ![Reservation Station](assets/ReservationStation-3.png)

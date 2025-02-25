@@ -52,7 +52,7 @@ set -gx CONDA_LEFT_PROMPT 1
 ### 换源
 
 !!! warning "注意"
-    Windows 用户无法直接创建名为`.condarc`的文件，可先执行`{shell}conda config --set show_channel_urls yes`生成该文件之后再修改
+    Windows 用户无法直接创建名为`.condarc`的文件，可先执行`#!shell conda config --set show_channel_urls yes`生成该文件之后再修改
 
 换为[浙大源](https://mirrors.zju.edu.cn/docs/anaconda/)
 

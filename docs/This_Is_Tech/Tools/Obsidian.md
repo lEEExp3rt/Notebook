@@ -188,4 +188,4 @@ int main()
     `{python icon title:"title"}'result if true'.method() if 1 else result_if_false.property`
     ```
 
-    `{python icon title:"title"}'result if true'.method() if 1 else result_if_false.property`
+    `#!python 'result if true'.method() if 1 else result_if_false.property`

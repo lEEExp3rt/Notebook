@@ -153,7 +153,7 @@ git reflog ## 查看所有历史记录，包括回退后删除的版本信息
     `HEAD`指向的表示为当前所在分支
 
 !!! tip "实用小技巧"
-    在Bash中使用`{Bash}alias`或`abbr`方法定义`git-log = git log --pretty=oneline --abbrev-commit --all --graph --decorate`以快捷查看简洁日志
+    在Bash中使用`#!Bash alias`或`abbr`方法定义`git-log = git log --pretty=oneline --abbrev-commit --all --graph --decorate`以快捷查看简洁日志
 
 ### 版本回退
 

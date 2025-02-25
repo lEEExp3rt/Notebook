@@ -151,6 +151,7 @@ nav:
       - "ZJU_Courses/Compiler_Principles/index.md"
       - "Chapter 1: Introduction": "ZJU_Courses/Compiler_Principles/Chapter1/Chapter1.md"
       - "Chapter 2: Lexical Analysis": "ZJU_Courses/Compiler_Principles/Chapter2/Chapter2.md"
+      - "Chapter 3: Parsing": "ZJU_Courses/Compiler_Principles/Chapter3/Chapter3.md"
     - 计算机体系结构:
       - "ZJU_Courses/Computer_Architecture/index.md"
       - "Chapter 1: Fundamentals Of Computer Design": "ZJU_Courses/Computer_Architecture/Chapter1/Chapter1.md"
