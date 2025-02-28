@@ -181,6 +181,11 @@ nav:
       - "Chapter 9: Virtual Memory": "ZJU_Courses/Operating_System/Chapter9/Chapter9.md"
   - 技术积累:
     - "This_Is_Tech/index.md"
+    - C++:
+      - "This_Is_Tech/CPP/index.md"
+      - 标准模板库STL:
+        - "This_Is_Tech/CPP/STL/index.md"
+        - 容器: "This_Is_Tech/CPP/STL/Containers.md"
     - 开发相关:
       - "This_Is_Tech/Developing/index.md"
       - 前端:
