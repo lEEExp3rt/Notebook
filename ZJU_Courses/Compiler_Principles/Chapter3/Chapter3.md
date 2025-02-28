@@ -6,28 +6,27 @@ tags:
 # Chapter 3: Parsing
 
 > [!abstract] 本节摘要
-
-CFGs are good at specifying programming language structure (in contrast to regular expressions)
-
-We define parsers from simple classes of CFGs
-
-LL(k), LR(k)
-
-We can build a predictive parser for LL(k) grammars by
-
-computing Nullable, First and Follow sets
-
-constructing a parsing table from these sets
-
-checking for duplicate entries, which indicate failures
-
-creating a C program from the parsing table
-
-If parser construction fails, we can
-
-rewrite the grammar (left factoring, eliminating left recursion) and try again
-
-try to build a parser using some other methods
+> CFGs are good at specifying programming language structure (in contrast to regular expressions)
+> 
+> We define parsers from simple classes of CFGs
+> 
+> LL(k), LR(k)
+> 
+> We can build a predictive parser for LL(k) grammars by
+> 
+> computing Nullable, First and Follow sets
+> 
+> constructing a parsing table from these sets
+> 
+> checking for duplicate entries, which indicate failures
+> 
+> creating a C program from the parsing table
+> 
+> If parser construction fails, we can
+> 
+> rewrite the grammar (left factoring, eliminating left recursion) and try again
+> 
+> try to build a parser using some other methods
 
 ## Introduction
 
@@ -35,7 +34,7 @@ try to build a parser using some other methods
 
 输入源程序经过词法分析器后会得到一个词法记号的序列，这个序列作为语法分析其的输入，由语法分析按照一定的语法(*Grammar*)将其解析为一个树状的语法结构
 
-语法分析可以用于识别语法错误，并使用树形结构进行语法分析
+语法分析可以用于识别语法错误，判断词法记号序列是否可以由定义的语言按照其语法生成
 
 ## Specifying Syntax With Context-Free Grammars
 
@@ -43,17 +42,19 @@ try to build a parser using some other methods
 
 > [!question] 为什么不能直接用正则表达式描述语法？
 > 因为正则表达式无法表示所有的语言类型，比如
+> 
 > $$\{(^i)^i\mid i\geq0\}$$
+> 
 > 这个语言不是正则语言，无法使用正则表达式描述，但是这种递归的语法结构在编程语言中非常常见
 > 
 > 因此需要**一个语言来描述不同的词法记号如何构成语法**（这个语言就是上下文无关语言），以及**判定一个给定的词法记号流是否在这个语法的语言范围内**
 
-上下文无关语法是一个四元组：
+上下文无关语法是一个四元组 $G=(T,N,P,S)$：
 
 - 终结符的集合 $T$
 - 非终结符的集合 $N$
 - 起始符 $S\in N$
-- 生成规则的集合
+- 生成规则的集合 $P$
 
 > [!example]- 以 $\{(^i)^i\mid i\geq0\}$ 为例
 > - $T=\{(,)\}$
@@ -139,6 +140,12 @@ $$\{a_1\cdots a_n\mid\forall_ia_i\in T\bigcap S\mathop{\rightarrow}\limits^{*}a_
 > - 优先级：更高优先级的运算符只能在后面推导得到，而不是先于优先级低的运算符
 > - 左结合：左递归的方式，生成规则中生成符号推导出的生成符号也在左侧
 
+> [!note]- 判定是否具有二义性
+> 判定一个上下文无关语法是否具有二义性这个问题是不可判定问题，但是可以通过给定的充分条件确保无二义性
+> 
+> - 自顶向下方法：LL(1)
+> - 自底向上方法：LR(1), LALR(1)
+
 有些语言的表达能力太强，不存在无二义性的上下文无关语法来定义，这些语言就不适合作为编程语言，比如自然语言，你无法用一个不含二义性的上下文无关语法来描述它
 
 ### EOF Marker
@@ -147,14 +154,32 @@ $$\{a_1\cdots a_n\mid\forall_ia_i\in T\bigcap S\mathop{\rightarrow}\limits^{*}a_
 
 ## Build Parser Based On CFG
 
-> [!tip] 更高效的方法
-> 注意到如果想要判断一个字符串是否在规定的语法内，一种最简单的方法就是基于上下文无关语法对字符串进行解析，如果匹配上了生成规则的某一条就按这一步继续向下构造，但是显然这种方法太过暴力，不高效，因此需要一些专有的解析方法
+由上下文无关语法定义了编程语言的语法规则后，就可以基于这个语法构建语法分析器了，常用的方法有自顶向下方法和自底向上方法
 
 ### Top-Down Parsing
 
-自顶向下的解析，也称为预测式解析(*Predictive Parsing, LL(k) Parsing*)
+自顶向下分析，每一步推导都需要做出两个选择：
 
-解析树是自顶向下、从左往右构造
+- 替换哪个非终结符
+- 应用哪个推导规则进行替换
+
+**解析树是自顶向下、从左往右构造**
+
+#### Recursive-Descent Parsing
+
+自顶向下分析的通用解决方案，递归下降分析，最直观且简单，只有 $LL(k)$ 语法才能使用
+
+1. 从根节点开始尝试应用一个生成规则生成一个语句
+2. 递归下降到下一层，对句中的非终结符尝试使用一个生成规则
+3. 如果发生语法错误，就尝试另一个生成规则
+4. 如果所有生成规则都无法匹配而产生语法错误，就失败，回溯到上一层，由上层重新选择一个新的生成规则，并回到步骤2
+
+> [!warning] 低效
+> 注意到这个分析过程太过低效，所以需要一些更高效的方法
+
+#### Predictive Parsing
+
+自顶向下分析之**预测分析法**(*Predictive Parsing*)，接受 $LL(k)$ 语法
 
 > [!example] 自顶向下解析
 > ![Example](assets/TopDownParsingExample.png)
@@ -179,17 +204,9 @@ $$\{a_1\cdots a_n\mid\forall_ia_i\in T\bigcap S\mathop{\rightarrow}\limits^{*}a_
 
 ```c title:"Build a parser" fold:true
 /* Step 1: Represent the token. */
-   enum token {
-       IF,
-       THEN,
-       ELSE,
-       BEGIN,
-       END,
-       PRINT,
-       SEMI,
-       NUM,
-       EQ
-   };
+enum token {
+    IF, THEN, ELSE, BEGIN, END, PRINT, SEMI, NUM, EQ
+};
 
 /* Step 2: Build infrastructure for reading tokens from lexer. */
 // Call lexer.
@@ -209,22 +226,11 @@ void eat(enum token t) {
 void S(void) {
     switch(tok) {
         case IF:
-            eat(IF);
-            E();
-            eat(THEN);
-            S();
-            eat(ELSE);
-            S();
-            break;
+            eat(IF); E(); eat(THEN); S(); eat(ELSE); S(); break;
         case BEGIN:
-            eat(BEGIN);
-            S();
-            L();
-            break;
+            eat(BEGIN); S(); L(); break;
         case PRINT:
-            eat(PRINT);
-            E();
-            break;
+            eat(PRINT); E(); break;
         default: error();
     }
 }
@@ -244,26 +250,63 @@ void E(void) {
 }
 ```
 
-> [!warning] 麻烦来了
+> [!danger] 麻烦来了
 > 可以看到，这个文法存在特殊之处，即它的生成规则的右边的第一个词法记号都是终结符，所以我们可以使用上述的分支开关语句进行情况分类并执行，但如果右边的第一个记号不是终结符的话就非常麻烦了
 > 
-> ![Problem](assets/Problem.png)
+> ```txt
+> S -> E $
+> E -> E + T
+> E -> E – T
+> E -> T
+> T -> T * F
+> T -> T / F
+> T -> F
+> F -> id
+> F -> num
+> F -> ( E )
+> ```
+> 
+> 按照这个语法构造出来的函数应该是
+> 
+> ```c
+> void S(void) { E(); eat(EOF); } 
+> void E(void) {
+>     switch(tok) { 
+>         case ?: E(); eat(PLUS); T(); break;
+>         case ?: E(); eat(MINUS); T(); break;
+>         case ?: T(); break; 
+>         default: error();
+>     }
+> }
+> ```
 > 
 > 可以发现，这里如果当前词法记号是一个数字的话，就无法直接写出选择下一步的条件了
 
-预测式分析只适用于第一个终止符提供了足够多信息能够选择下一步生成规则的情况
+为了填补 `{c}?` 处的内容，需要引入新的工具
 
-#### First And Follow Sets
+##### First And Follow Sets
 
-![](assets/FirstAndFollowSets.png)
+给定 $G=(T,N,P,S)$，$\alpha\in(T\bigcup N)^*$，
 
-简言之，FIRST 集就是从当前字符串出发可以推导得到的所有串的第一个终结符的集合， FOLLOW 集就是从起始符出发推导得到的所有串中，紧随当前符号的第一个终结符的集合，或者有其它夹在二者中间的非终结符能够经过任意推导得到空串的
+- $\text{First}$集：可从 $\alpha$ 推导得到的串的首个终结符的集合
 
-FIRST 集的计算方法：
+$$\text{First}(\alpha)=\{a\mid \alpha\Rightarrow^*a\cdots,a\in T\}$$
+
+- $\text{Follow}$集：从 $S$ 出发，可能在推导过程中跟在 $A$ 右边的终结符集合
+
+$$\text{Follow}(A)=\{a\mid S\Rightarrow^*\cdots Aa\cdots,a\in T\bigcup S\Rightarrow^*\cdots ABCa\cdots,a\in T,B\Rightarrow^*\epsilon,C\Rightarrow^*\epsilon\}$$
+
+> [!tip] 如何选择
+> 为了在分支语句处决定选择的条件，我们要知道生成规则 $X\rightarrow\gamma$ 右侧可能的第一个终结符，第一个非终结符的来源可能是
+> 
+> - $\text{First}(\gamma)$中的字符
+> - 如果 $\gamma\rightarrow^*\epsilon$，那
+
+基于此，可以通过以下流程实现 $LL(1)$ 的分析预测方法
+
+1. 计算 $\text{First}$ 和 $\text{Follow}$ 集
 
 ![](assets/FirstSet.png)
-
-FOLLOW 集的计算方法：
 
 ![](assets/FollowSet.png)
 
@@ -275,9 +318,7 @@ FOLLOW 集的计算方法：
 
 ![Example](assets/FirstAndFollowSetsExamples.pdf)
 
-#### Predictive Parsing Tables
-
-构造完上述表后，就可以构建一个预测式解析表
+2. 构造预测分析表
 
 ![](assets/PredictiveParsingTables.png)
 
@@ -285,9 +326,13 @@ FOLLOW 集的计算方法：
 
 ![Examples](assets/PredictiveParsingTablesExamples.pdf)
 
-可以看到，如果表中有一个格是空的，那么就表明出现了语法错误，没有对应的生成规则，如果有多个规则在一个格子中就表明有多重定义，这样在函数中还是没有办法继续选择下一步该怎么做
+可以看到，如果表中有一个格是空的，那么就表明出现了语法错误，没有对应的生成规则，如果有多个规则在一个格子中就表明有多重定义，这样在函数中还是没有办法继续选择下一步该怎么做，也就说明这个语法不是 $LL(1)$ 语法
 
-$LL(1)$ 语法就是基于此定义的一种新的语法，能够使得解析表中不存在多重定义的情况
+**$LL(1)$ 语法就是基于此定义的一种新的语法，能够使得解析表中不存在多重定义的情况**
+
+1. 无二义性
+2. 无左递归
+3. 无左公因子
 
 > [!note]- 完整含义
 > - 从左到右解析(*Left-to-right Parse*)
@@ -297,19 +342,23 @@ $LL(1)$ 语法就是基于此定义的一种新的语法，能够使得解析表
 可以定义 $LL(k)$ 语法，就是每个表中有 $k$ 个终结符
 
 | aa  | ab  | ba  | bb  | ... |
-| :-: | --- | --- | --- | --- |
-|     |     |     |     |     |
+| :-: | :-: | :-: | :-: | :-: |
+| ... | ... | ... | ... | ... |
 
 > [!tip] 注意到
 > 不难发现，所有的 $LL(k)$ 语法都是 $LL(k+n)$ 语法，其中 $n\geq0$
+
+3. 预测分析
 
 有了这个解析表后，就可以用一些数据结构来实现这个语法解析器，如栈
 
 ![](assets/ParseExample.png)
 
-#### Eliminate Left-Recursion
+原本的 `{c}?` 处的内容就由分析表决定了
 
-通过重写语法规则来消除左递归
+##### Eliminate Left-Recursion
+
+通过重写语法规则来消除左递归，以防止无限循环的递归下降分析
 
 ![](assets/EliminateLeftRecursion.png)
 
@@ -319,7 +368,9 @@ $LL(1)$ 语法就是基于此定义的一种新的语法，能够使得解析表
 
 重写后，这就是一个 $LL(1)$ 语法
 
-#### Left Factoring
+##### Left Factoring
+
+同一个非终结符的多个生成规则的生成式中有共同前缀，可能导致回溯，通过提取左公因子来延迟部分规则的生成
 
 ![](assets/LeftFactoring.png)
 
@@ -328,3 +379,7 @@ $LL(1)$ 语法就是基于此定义的一种新的语法，能够使得解析表
 在遇到错误时，通常的编译器会记录下这个错误，尝试恢复错误，并继续扫描来发现所有的错误，最终一次性报错，方便调试
 
 错误可以通过删除、替换或插入词法记号实现，需要注意的是插入操作是比较危险的，因为可以一直保持插入而不终止编译过程，所以通常来说现代编译器采用删除的方式
+
+### Bottom-Up Parsing
+
+[编译原理2024-03-21第3-5节](https://classroom.zju.edu.cn/livingroom?course_id=61130&sub_id=1174565&tenant_code=112)
