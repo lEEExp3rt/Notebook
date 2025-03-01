@@ -20,7 +20,7 @@
 
 ### Vector
 
-```cpp title:"<vector>"
+```cpp title:"vector"
 template<
     class T,
     class Allocator = std::allocator<T>
@@ -97,7 +97,7 @@ TODO
 
 ### Map
 
-```cpp title:"<map>"
+```cpp title:"map"
 template<
     class Key,
     class T,
@@ -143,7 +143,7 @@ template<
 
 ### Set
 
-```cpp title:"<set>"
+```cpp title:"set"
 template<
     class Key,
     class Compare = std::less<Key>,
@@ -182,7 +182,7 @@ template<
 
 ### Multimap
 
-```cpp title:"<map>"
+```cpp title:"map"
 template<
     class Key,
     class T,
@@ -224,7 +224,7 @@ template<
 
 ### Multiset
 
-```cpp title:"<set>"
+```cpp title:"set"
 template<
     class Key,
     class Compare = std::less<Key>,
@@ -269,7 +269,7 @@ template<
 
 ### Unordered_map[^1]
 
-```cpp title:"<unordered_map>"
+```cpp title:"unordered_map"
 template<
     class Key,
     class T,
@@ -310,7 +310,7 @@ template<
 
 ### Unordered_set[^1]
 
-```cpp title:"<unordered_set>"
+```cpp title:"unordered_set"
 template<
     class Key,
     class Hash = std::hash<Key>,
@@ -349,7 +349,7 @@ template<
 
 ### Unordered_multimap[^1]
 
-```cpp title:"<unordered_map>"
+```cpp title:"unordered_map"
 template<
     class Key,
     class T,
@@ -386,7 +386,7 @@ template<
 
 ### Unordered_set[^1]
 
-```cpp title:"<unordered_set>"
+```cpp title:"unordered_set"
 template<
     class Key,
     class Hash = std::hash<Key>,
@@ -426,7 +426,7 @@ template<
 
 ### Stack
 
-```cpp title:"<stack>"
+```cpp title:"stack"
 template<
     class T,
     class Container = std::deque<T>
@@ -449,7 +449,7 @@ template<
 
 ### Queue
 
-```cpp title:"<queue>"
+```cpp title:"queue"
 template<
     class T,
     class Container = std::deque<T>
@@ -473,7 +473,7 @@ template<
 
 ### Priority_queue
 
-```cpp title:"<queue>"
+```cpp title:"queue"
 template<
     class T,
     class Container = std::vector<T>,
