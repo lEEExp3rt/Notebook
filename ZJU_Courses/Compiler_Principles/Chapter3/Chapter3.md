@@ -175,11 +175,13 @@ $$\{a_1\cdots a_n\mid\forall_ia_i\in T\bigcap S\mathop{\rightarrow}\limits^{*}a_
 4. 如果所有生成规则都无法匹配而产生语法错误，就失败，回溯到上一层，由上层重新选择一个新的生成规则，并回到步骤2
 
 > [!warning] 低效
-> 注意到这个分析过程太过低效，所以需要一些更高效的方法
+> 注意到这个分析过程太过低效，如果不匹配就需要回溯分析，开销过大，所以需要一些更高效的方法
 
 #### Predictive Parsing
 
 自顶向下分析之**预测分析法**(*Predictive Parsing*)，接受 $LL(k)$ 语法
+
+##### Background
 
 > [!example] 自顶向下解析
 > ![Example](assets/TopDownParsingExample.png)
@@ -294,17 +296,25 @@ $$\text{First}(\alpha)=\{a\mid \alpha\Rightarrow^*a\cdots,a\in T\}$$
 
 - $\text{Follow}$集：从 $S$ 出发，可能在推导过程中跟在 $A$ 右边的终结符集合
 
-$$\text{Follow}(A)=\{a\mid S\Rightarrow^*\cdots Aa\cdots,a\in T\bigcup S\Rightarrow^*\cdots ABCa\cdots,a\in T,B\Rightarrow^*\epsilon,C\Rightarrow^*\epsilon\}$$
+$$\text{Follow}(A)=\{a\mid(S\Rightarrow^*\cdots Aa\cdots,a\in T)\bigcup(S\Rightarrow^*\cdots ABCa\cdots,a\in T,B\Rightarrow^*\epsilon,C\Rightarrow^*\epsilon)\}$$
 
 > [!tip] 如何选择
 > 为了在分支语句处决定选择的条件，我们要知道生成规则 $X\rightarrow\gamma$ 右侧可能的第一个终结符，第一个非终结符的来源可能是
 > 
 > - $\text{First}(\gamma)$中的字符
-> - 如果 $\gamma\rightarrow^*\epsilon$，那
+> - 如果 $\gamma\rightarrow^*\epsilon$，那么 $\text{Follow}(\gamma)$ 中的字符
+
+> [!note]+ $\text{First}$ 和 $\text{Follow}$ 的意义
+> 使用这两个集合就是为了应对形如 $A\rightarrow\alpha\mid\beta$ 的情况的下一步选择可以唯一确定
+> 
+> 1. $\text{First}(\alpha)\bigcap\text{First}(\beta)=\emptyset$，此时**两条生成式 $\alpha$ 和 $\beta$ 无法推导出首单词相同的串**，那么下一步的选择就很清晰了，只看终结符就可以选择出下一步
+> 2. 若 $\beta\Rightarrow^*\epsilon$，那么 $\alpha\nRightarrow^*\epsilon$ 且 $\text{First}(\alpha)\bigcap\text{Follow}(A)=\emptyset$，即 **$\alpha$ 和 $\beta$ 不同时推导出空串且 $\text{First}(\alpha)$ 不在 $\text{Follow}(A)$ 中**，此时后继终结符可以推导出空串，无法确定，需要从 $\text{Follow}$ 中看
+>     1. 若下一个输入 $b\in\text{First}(\alpha)$，那么选择 $A\rightarrow\alpha$
+>     2. 若下一个输入 $b\in\text{Follow}(A)$，那么选择 $A\rightarrow\beta$ （这对应于 $A$ 最终推导出空串并且后续紧跟 $b$ 的情况
 
 基于此，可以通过以下流程实现 $LL(1)$ 的分析预测方法
 
-1. 计算 $\text{First}$ 和 $\text{Follow}$ 集
+- 计算 $\text{First}$ 和 $\text{Follow}$ 集
 
 ![](assets/FirstSet.png)
 
@@ -318,7 +328,7 @@ $$\text{Follow}(A)=\{a\mid S\Rightarrow^*\cdots Aa\cdots,a\in T\bigcup S\Rightar
 
 ![Example](assets/FirstAndFollowSetsExamples.pdf)
 
-2. 构造预测分析表
+- 构造预测分析表
 
 ![](assets/PredictiveParsingTables.png)
 
@@ -326,7 +336,7 @@ $$\text{Follow}(A)=\{a\mid S\Rightarrow^*\cdots Aa\cdots,a\in T\bigcup S\Rightar
 
 ![Examples](assets/PredictiveParsingTablesExamples.pdf)
 
-可以看到，如果表中有一个格是空的，那么就表明出现了语法错误，没有对应的生成规则，如果有多个规则在一个格子中就表明有多重定义，这样在函数中还是没有办法继续选择下一步该怎么做，也就说明这个语法不是 $LL(1)$ 语法
+可以看到，**如果表中有一个格是空的，那么就表明出现了语法错误**，没有对应的生成规则，如果有多个规则在一个格子中就表明有多重定义，这样在函数中还是没有办法继续选择下一步该怎么做，也就说明这个语法不是 $LL(1)$ 语法
 
 **$LL(1)$ 语法就是基于此定义的一种新的语法，能够使得解析表中不存在多重定义的情况**
 
@@ -348,7 +358,7 @@ $$\text{Follow}(A)=\{a\mid S\Rightarrow^*\cdots Aa\cdots,a\in T\bigcup S\Rightar
 > [!tip] 注意到
 > 不难发现，所有的 $LL(k)$ 语法都是 $LL(k+n)$ 语法，其中 $n\geq0$
 
-3. 预测分析
+- 预测分析
 
 有了这个解析表后，就可以用一些数据结构来实现这个语法解析器，如栈
 
