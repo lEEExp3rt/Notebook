@@ -392,4 +392,94 @@ $$\text{Follow}(A)=\{a\mid(S\Rightarrow^*\cdots Aa\cdots,a\in T)\bigcup(S\Righta
 
 ### Bottom-Up Parsing
 
-[编译原理2024-03-21第3-5节](https://classroom.zju.edu.cn/livingroom?course_id=61130&sub_id=1174565&tenant_code=112)
+自底向上解析就是把串 $w$ 归约为语法开始符号 $S$ 的过程，与生成规则右侧的生成式匹配的子串被替换为该生成规则的左侧非终结符
+
+![](assets/BottomUpParsingExample.png)
+
+!!! info "不同于自顶向下"
+    自顶向下预测分析必须看后续的 k 个词法记号来确定选择哪一条生成式，如果后续的 k 个词法记号完全相同就无法使用 $LL(k)$ 解析器进行语法分析；而自底向上是完全逆向来的
+
+自底向上的新语法 $LR(k)$ 解析
+
+??? note "完整含义"
+    - 从左到右扫描(*Left-To-Right*)
+    - 最右逆向推导(*Right-Most Derivation In Reverse*)
+    - 向前看 $k$ 个字符
+
+$LR(k)$ 语法的表达能力更强，是 $LL(k)$ 语法的超集（即 $LL(k)\subset LR(k)$），不要求无左公因式并且可以处理左递归文法，因此它被广泛采用
+
+#### Shift-Reduce
+
+移动规约，把字符串分为左侧 $\alpha$ 和右侧 $\beta$ 两个子串，其中右侧是未被检查过的，只包含未被处理解析的终结符；左侧是已经处理过的，包含终结符和非终结符
+
+![](assets/ShiftReduceExample.png)
+
+解析时，从左往右解析，如果没有生成规则替换，就移动(*Shift*)，如果有规则匹配，就归约(*Reduce*)
+
+!!! tip "最左规约"
+    LR 分析采用最右推导的逆过程：最左规约
+
+使用一个栈来存储左侧字符串，如果有匹配的生成规则就弹栈并压入替换的生成符，否则只移动
+
+#### LR(0) Parsing
+
+若有规则匹配时是继续压栈还是直接替换归约呢，这就需要 $LR(0)$ 解析
+
+**$LR(0)$ 解析就是只看栈的状态就能得知下一步是移动还是归约**，通过遍历所有的可能的和合法的解析步骤，并把它们之间的状态转移用有限自动机构建出来，基于这个有限自动机就可以对输入的串进行解析
+
+![](assets/LR0.png)
+
+!!! note "如何转移"
+    - $A\rightarrow\cdot XY$ 在读入字符 $X$ 之后就可以转移为 $A\rightarrow X\cdot Y$
+    - $X\rightarrow\alpha Y\beta$ 与 $Y\rightarrow\gamma$，可以直接从 $X\rightarrow\alpha\cdot Y\beta$转移为 $Y\rightarrow\cdot\gamma$
+
+转换成 DFA
+
+![](assets/LR0DFA.png)
+
+构造DFA的方法如下
+
+首先计算 $\epsilon$ 闭包计算方法：
+
+```txt title="Closure"
+Closure(I) = 
+    repeat
+        for any item A → α·Xβ in I
+            for any production X → γ
+                I ← I ∪ {X → ·γ}
+    until I dose not change
+    return I
+```
+
+这里的 $\epsilon$ 闭包称为项集(*Items*)
+
+```txt title="Goto"
+Goto(I,X) = 
+    set J to the empty set
+    for any item A → α.Xβ
+        add A → αX.β to J
+    return Closure(J)
+```
+
+基于这两个结构，可以得到计算DFA的算法
+
+```txt
+Initialize T to {Closure({S' → .S$})}
+Initialize E to empty
+repeat
+    for each state I in T
+        for each item A → α.Xβ in I
+            let J be Goto(I,X)
+            T ← T ∪ {J}
+            E ← E ∪ {I →X→ J}
+until E and T do not change
+```
+
+!!! example "使用栈"
+    ![](assets/LRPasringExample.png)
+
+使用一个表格决定每个状态如何走下一步
+
+![](assets/LRParsingTable.png)
+
+#### SLR(0) Parsing
